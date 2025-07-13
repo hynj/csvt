@@ -1,10 +1,16 @@
 <script lang="ts">
+import svelteLogo from '../assets/svelte.svg'
   import Counter from '../lib/Counter.svelte'
+import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <main>
   <div>
+      <h1 class="text-4xl font-bold ">
+    Hello world!
+  </h1>
     <a href="https://vite.dev" target="_blank" rel="noreferrer">
+      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
     <a href="https://svelte.dev" target="_blank" rel="noreferrer">
     </a>
@@ -14,6 +20,7 @@
   <div class="card">
     <Counter />
   </div>
+
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
