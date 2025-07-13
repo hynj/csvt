@@ -1,47 +1,155 @@
-# Svelte + TS + Vite
+# create-csvt
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+🚀 **The fastest way to create a CSVT stack project**
 
-## Recommended IDE Setup
+**CSVT** = **C**loudflare Workers + **S**velte + **V**ite + **T**ailwind CSS
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+A CLI tool to scaffold new projects with the modern CSVT stack: Cloudflare Workers, Svelte 5, Vite, TypeScript, and Tailwind CSS.
 
-## Need an official Svelte framework?
+## Features
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+✨ **Modern Stack**
+- Svelte 5 with TypeScript
+- Vite 7 for fast development
+- Tailwind CSS v4 for styling
+- Cloudflare Workers for serverless deployment
 
-## Technical considerations
+🛠️ **Developer Experience**
+- Interactive prompts for project setup
+- Choice of package manager (Bun, npm, yarn, pnpm)
+- Automatic dependency installation
+- Git repository initialization
+- shadcn-svelte UI components ready
 
-**Why use this over SvelteKit?**
+⚡ **Built with Bun**
+- Lightning-fast CLI execution
+- Native TypeScript support
+- Single executable binary
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Quick Start
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+### Using Bun (Recommended)
+```bash
+bun create csvt my-app
 ```
+
+### Using npm
+```bash
+npm create csvt@latest my-app
+```
+
+### Using yarn
+```bash
+yarn create csvt my-app
+```
+
+### Using pnpm
+```bash
+pnpm create csvt my-app
+```
+
+## CLI Options
+
+```bash
+create-csvt [project-name] [options]
+```
+
+### Options
+
+- `-h, --help` - Show help message
+- `-t, --template` - Template to use (default: default)
+- `--no-git` - Skip git initialization
+- `--no-install` - Skip dependency installation
+- `--use-npm` - Use npm as package manager
+- `--use-yarn` - Use yarn as package manager
+- `--use-pnpm` - Use pnpm as package manager
+
+### Examples
+
+```bash
+# Basic usage
+bun create cf-svelte my-awesome-app
+
+# With specific package manager
+npm create csvt@latest my-app --use-npm
+
+# Skip git and dependency installation
+bun create csvt my-app --no-git --no-install
+
+# Show help
+bun create csvt --help
+```
+
+## What's Included
+
+After running the CLI, you'll have a fully configured project with:
+
+### 📁 Project Structure
+```
+my-app/
+├── src/
+│   ├── index.ts          # Cloudflare Worker entry point
+│   ├── main.ts           # Client-side app entry
+│   ├── App.svelte        # Root Svelte component
+│   ├── routes/           # Page components
+│   ├── lib/              # Reusable components
+│   └── assets/           # Static assets
+├── public/               # Public assets
+├── vite.config.ts        # Vite configuration
+├── wrangler.jsonc        # Cloudflare Workers config
+├── package.json          # Dependencies and scripts
+├── tsconfig.json         # TypeScript configuration
+└── CLAUDE.md            # AI assistant guidance
+```
+
+### 🛠️ Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run deploy` - Deploy to Cloudflare Workers
+- `npm run check` - Type check the project
+
+### 🎨 Styling Setup
+
+- **Tailwind CSS v4** with Vite integration
+- Utility libraries: `clsx`, `tailwind-merge`, `tailwind-variants`
+- Animation utilities via `tw-animate-css`
+- **shadcn-svelte** components ready to use
+
+### ☁️ Cloudflare Workers Configuration
+
+- SPA routing with fallback to `index.html`
+- API routes prioritized at `/api/*`
+- Asset serving with caching
+- Node.js compatibility enabled
+
+## Development
+
+### Local Development
+
+1. Clone the repository
+2. Install dependencies: `bun install`
+3. Test locally: `bun run dev my-test-app`
+
+### Building for Production
+
+The CLI tool doesn't require a build step when using Bun, but you can create a compiled binary:
+
+```bash
+bun build ./bin/create-csvt.js --compile --outfile create-csvt
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## License
+
+MIT
+
+---
+
+**Happy coding!** 🚀
+
+Made with ❤️ using Bun and TypeScript

@@ -1,35 +1,52 @@
 {
-  "name": "cf-vite-test-2",
-  "private": true,
-  "version": "0.0.0",
+  "name": "create-csvt",
+  "version": "1.0.0",
+  "description": "Create a new CSVT stack project (Cloudflare Workers + Svelte + Vite + Tailwind)",
   "type": "module",
+  "bin": {
+    "create-csvt": "./bin/create-csvt.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "bun run build && vite preview",
-    "deploy": "bun run build && wrangler deploy",
-    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
-    "cf-typegen": "wrangler types"
+    "build": "echo 'No build step needed for Bun CLI'",
+    "test": "bun test",
+    "dev": "bun run bin/create-cf-svelte.js"
+  },
+  "keywords": [
+    "csvt",
+    "cloudflare",
+    "workers",
+    "svelte",
+    "vite",
+    "tailwind",
+    "template",
+    "starter",
+    "cli",
+    "create"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/create-csvt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/create-csvt/issues"
+  },
+  "homepage": "https://github.com/yourusername/create-csvt#readme",
+  "dependencies": {
+    "@clack/prompts": "^0.11.0"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.9.4",
-    "@lucide/svelte": "^0.525.0",
-    "@sveltejs/vite-plugin-svelte": "^6.0.0",
-    "@tsconfig/svelte": "^5.0.4",
     "@types/node": "^24.0.13",
-    "clsx": "^2.1.1",
-    "svelte": "^5.35.5",
-    "svelte-check": "^4.2.2",
-    "tailwind-merge": "^3.3.1",
-    "tailwind-variants": "^1.0.0",
-    "tw-animate-css": "^1.3.5",
-    "typescript": "~5.8.3",
-    "vite": "^7.0.4",
-    "wrangler": "^4.24.3"
+    "typescript": "~5.8.3"
   },
-  "dependencies": {
-    "@dvcol/svelte-simple-router": "^2.7.2",
-    "@tailwindcss/vite": "^4.1.11",
-    "tailwindcss": "^4.1.11"
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   }
 }
