@@ -26,7 +26,7 @@ export async function main() {
   let projectName = positionals[0]
   
   if (!projectName) {
-    projectName = process.cwd().split('/').pop() || 'my-cf-svelte-app'
+    projectName = process.cwd().split('/').pop() || 'my-csvt-app'
   }
 
   if (!validateProjectName(projectName)) {

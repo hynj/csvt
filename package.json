@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/create-csvt.git"
+    "url": "https://github.com/hynj/csvt.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/create-csvt/issues"
+    "url": "https://github.com/hynj/csvt/issues"
   },
-  "homepage": "https://github.com/yourusername/create-csvt#readme",
+  "homepage": "https://github.com/hynj/csvt#readme",
   "dependencies": {
     "@clack/prompts": "^0.11.0"
   },

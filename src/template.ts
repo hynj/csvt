@@ -42,7 +42,7 @@ async function copyTemplateFiles(templateDir: string, projectDir: string, projec
     const destPath = join(projectDir, entry.name)
 
     if (entry.isDirectory()) {
-      await copyDirectory(srcPath, destPath)
+      await copyTemplateFiles(srcPath, destPath, projectInfo)
     } else if (entry.name === 'package.json.template') {
       // Process package.json template
       await processTemplate(srcPath, join(projectDir, 'package.json'), projectInfo)
