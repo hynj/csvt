@@ -92,4 +92,13 @@ export default defineConfig({
       $lib: path.resolve("./src/frontend/lib"),
     },
   },
+  build: {
+    manifest: true,
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve('./index.html')
+      }
+    }
+  }
 })

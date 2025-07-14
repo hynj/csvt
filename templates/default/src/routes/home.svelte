@@ -21,6 +21,12 @@ import { Button } from "$lib/components/ui/button/index.js";
     <Counter />
   </div>
 
+  <div class="mt-8">
+    <h2 class="text-2xl font-semibold mb-4">API Example</h2>
+    <a href="/api/hello" target="_blank" rel="noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+      Test API Endpoint →
+    </a>
+  </div>
 
   <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!

@@ -13,4 +13,13 @@ export default defineConfig({
       $lib: path.resolve("./src/lib"),
     },
   },
+  build: {
+    manifest: true,
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve('./index.html')
+      }
+    }
+  }
 })
