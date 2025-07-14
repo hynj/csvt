@@ -4,6 +4,7 @@ import { validateProjectName, toTitleCase } from './utils.ts'
 export interface ProjectInfo {
   projectName: string
   projectTitle: string
+  template: 'default' | 'hono' | 'hono-durable' | 'hono-durable-localsqlite-sync'
   packageManager: 'bun' | 'npm' | 'yarn' | 'pnpm'
   installDeps: boolean
   initGit: boolean
@@ -15,6 +16,9 @@ export async function getProjectInfo(initialProjectName: string, flags: any): Pr
   if (flags['use-npm']) packageManager = 'npm'
   else if (flags['use-yarn']) packageManager = 'yarn'
   else if (flags['use-pnpm']) packageManager = 'pnpm'
+  
+  // Determine template from flags
+  const template = flags.template || 'default'
 
   const responses = await p.group(
     {
@@ -35,6 +39,17 @@ export async function getProjectInfo(initialProjectName: string, flags: any): Pr
           if (!value) return 'Project title is required'
         },
       }),
+      template: () =>
+        template !== 'default' ? undefined : p.select({
+          message: 'Choose a template:',
+          options: [
+            { value: 'default', label: 'Default (Basic CSVT stack)' },
+            { value: 'hono', label: 'Hono + RPC (Type-safe API with Hono framework)' },
+            { value: 'hono-durable', label: 'Hono + Durable Objects (Stateful apps with sessions)' },
+            { value: 'hono-durable-localsqlite-sync', label: 'Hono + Durable Objects + Local SQLite Sync (Offline-first with sync)' },
+          ],
+          initialValue: 'default',
+        }),
       packageManager: () => 
         flags['use-npm'] || flags['use-yarn'] || flags['use-pnpm'] ? undefined : p.select({
           message: 'Package manager:',
@@ -68,6 +83,7 @@ export async function getProjectInfo(initialProjectName: string, flags: any): Pr
   return {
     projectName: responses.projectName!,
     projectTitle: responses.projectTitle!,
+    template: responses.template || template,
     packageManager: responses.packageManager || packageManager,
     installDeps: flags['no-install'] ? false : (responses.installDeps ?? true),
     initGit: flags['no-git'] ? false : (responses.initGit ?? true),

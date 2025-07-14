@@ -1,0 +1,33 @@
+{
+  "name": "{{projectName}}",
+  "compatibility_date": "{{currentDate}}",
+  "main": "./src/backend/index.ts",
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "COUNTER_DURABLE_OBJECT",
+        "class_name": "CounterDurableObject",
+        "script_name": "{{projectName}}"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["CounterDurableObject"]
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}
+

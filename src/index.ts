@@ -75,7 +75,7 @@ Usage:
 
 Options:
   -h, --help        Show this help message
-  -t, --template    Template to use (default: default)
+  -t, --template    Template to use (default, hono, hono-durable, hono-durable-localsqlite-sync)
   --no-git          Skip git initialization
   --no-install      Skip dependency installation
   --use-npm         Use npm as package manager
@@ -85,6 +85,9 @@ Options:
 Examples:
   bun create csvt my-app
   npm create csvt@latest my-app --use-npm
+  bun create csvt my-app --template hono
+  bun create csvt my-app --template hono-durable
+  bun create csvt my-app --template hono-durable-localsqlite-sync
   bun create csvt my-app --no-git --no-install
 `)
 }

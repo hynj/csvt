@@ -17,7 +17,7 @@ export async function createProject(projectInfo: ProjectInfo): Promise<void> {
   // Find templates directory relative to this script
   const scriptDir = dirname(new URL(import.meta.url).pathname)
   const projectRoot = join(scriptDir, '../')
-  const templateDir = join(projectRoot, 'templates/default')
+  const templateDir = join(projectRoot, `templates/${projectInfo.template}`)
   
   console.log('📄 Copying template files...')
   await copyTemplateFiles(templateDir, projectName, projectInfo)
@@ -30,6 +30,9 @@ export async function createProject(projectInfo: ProjectInfo): Promise<void> {
   if (projectInfo.installDeps) {
     console.log(`📦 Installing dependencies with ${projectInfo.packageManager}...`)
     await installDependencies(projectName, projectInfo.packageManager)
+    
+    console.log('🔧 Generating Cloudflare Workers types...')
+    await generateCloudflareTypes(projectName, projectInfo.packageManager)
   }
 }
 
@@ -181,5 +184,31 @@ async function installDependencies(projectDir: string, packageManager: string): 
   } catch (error) {
     console.warn(`⚠️  Failed to install dependencies with ${packageManager}:`, error)
     console.log(`You can install them manually by running: cd ${projectDir} && ${packageManager} install`)
+  }
+}
+
+async function generateCloudflareTypes(projectDir: string, packageManager: string): Promise<void> {
+  const { spawn } = await import('child_process')
+
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const child = spawn(packageManager, ['run', 'cf-typegen'], {
+        cwd: projectDir,
+        stdio: 'inherit'
+      })
+      
+      child.on('close', (code) => {
+        if (code === 0) {
+          resolve()
+        } else {
+          reject(new Error(`cf-typegen failed with code ${code}`))
+        }
+      })
+      
+      child.on('error', reject)
+    })
+  } catch (error) {
+    console.warn('⚠️  Failed to generate Cloudflare Workers types:', error)
+    console.log(`You can generate them manually by running: cd ${projectDir} && ${packageManager} run cf-typegen`)
   }
 }

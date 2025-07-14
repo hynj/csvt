@@ -26,6 +26,12 @@ A CLI tool to scaffold new projects with the modern CSVT stack: Cloudflare Worke
 - Native TypeScript support
 - Single executable binary
 
+📝 **Why Not SvelteKit?**
+- Uses Cloudflare Vite plugin + Svelte instead of SvelteKit
+- SvelteKit doesn't currently support Cloudflare's environment API
+- This limitation prevents access to features like Durable Objects RPC
+- Our approach ensures full compatibility with all Cloudflare Workers features
+
 ## Quick Start
 
 ### Using Bun (Recommended)
