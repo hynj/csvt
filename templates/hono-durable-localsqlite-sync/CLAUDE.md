@@ -83,8 +83,6 @@ This project uses {{packageManager}} as the package manager. Use `{{packageManag
 - **Cross-Origin Isolation**: Required headers are automatically set for SQLocal compatibility
 - **Offline-First**: All data operations work offline and sync automatically when online
 - **Real-Time Updates**: UI automatically updates when data changes using Svelte 5 runes
-- **Progressive Web App**: Full PWA support with service worker caching and offline functionality
-- **Auto-Updates**: Automatic service worker updates with user prompts
 
 ## Durable Objects Architecture
 
@@ -173,36 +171,6 @@ await todos.refresh();
 Required for SQLocal, automatically configured:
 - `Cross-Origin-Embedder-Policy: require-corp`
 - `Cross-Origin-Opener-Policy: same-origin`
-
-## Progressive Web App (PWA) Features
-
-### Service Worker & Caching
-This template includes comprehensive PWA support with Workbox:
-
-#### Features
-- **Pre-caching**: All static assets are cached for offline use
-- **Runtime Caching**: API responses cached with NetworkFirst strategy
-- **Auto-Updates**: Automatic service worker updates with user prompts
-- **Font Caching**: Google Fonts cached for offline use
-- **Install Prompt**: Native app installation prompt for supported browsers
-
-#### Cache Strategies
-- **Static Assets**: Pre-cached during build (CacheFirst)
-- **API Calls**: NetworkFirst with 10s timeout, falls back to cache
-- **External Fonts**: CacheFirst with 1-year expiration
-- **Images**: CacheFirst with size limits
-
-#### PWA Installation
-- Install prompt appears for eligible browsers
-- Native app-like experience when installed
-- Standalone display mode with custom theme
-- Offline functionality maintained after installation
-
-#### Service Worker Updates
-- Automatic update checks on app load
-- User-friendly update prompts
-- Seamless updates without data loss
-- Background sync capabilities
 
 ## Styling Guidelines
 

@@ -5,7 +5,6 @@
   import HelloComponent from './routes/home.svelte';
   import TodosComponent from './routes/todos.svelte';
   import LoginComponent from './routes/login.svelte';
-  import PWAPrompt from './lib/components/PWAPrompt.svelte';
 
   const RouteName = {
     Hello: 'hello',
@@ -56,4 +55,3 @@
 </script>
 
 <RouterView {options} />
-<PWAPrompt />

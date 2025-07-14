@@ -1,6 +1,6 @@
 {
   "name": "create-csvt",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Create a new CSVT stack project (Cloudflare Workers + Svelte + Vite + Tailwind)",
   "type": "module",
   "bin": {
